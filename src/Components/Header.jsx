@@ -14,9 +14,8 @@ class Header extends React.Component {
   async componentDidMount() {
     this.setState({ loading: true });
     const result = await getUser();
-    const resultString = JSON.stringify(result);
     this.setState({
-      username: resultString,
+      username: result.name,
       loading: false,
     });
   }
