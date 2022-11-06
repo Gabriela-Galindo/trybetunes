@@ -1,5 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Header from '../Components/Header';
+import searchAlbumsAPI from '../services/searchAlbumsAPI';
+import Loading from './Loading';
 
 class Search extends React.Component {
   constructor() {
@@ -7,6 +10,8 @@ class Search extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.state = {
       artist: '',
+      loading: false,
+      albumList: '',
     };
   }
 
@@ -22,32 +27,72 @@ class Search extends React.Component {
     return artist.length < min;
   };
 
-  render() {
+  onSearchButtonClick = async (event) => {
+    event.preventDefault();
     const { artist } = this.state;
+    this.setState({ loading: true });
+    const result = await searchAlbumsAPI(artist);
+    const element = (
+      <div>
+        <div>
+          Resultado de álbuns de:
+          {' '}
+          { artist }
+        </div>
+        {result.length < 1 ? 'Nenhum álbum foi encontrado'
+          : (
+            <ul>
+              {result.map((card) => (
+                <li key={ card.collectionId }>
+                  {' '}
+                  { card.artistName }
+                  {' '}
+                  { card.collectionName }
+                  {' '}
+                  <Link
+                    to={ `/album/${card.collectionId}` }
+                    data-testid={ `link-to-album-${card.collectionId}` }
+                  >
+                    Vá para album
+
+                  </Link>
+                </li>))}
+            </ul>)}
+      </div>
+    );
+    this.setState({ artist: '', loading: false, albumList: element });
+  };
+
+  render() {
+    const { artist, loading, albumList } = this.state;
     return (
       <div data-testid="page-search">
         <Header />
-        <form>
-          <br />
-          <label htmlFor="search-artist">
-            <input
-              id="search-artist"
-              name="search-artist"
-              type="text"
-              value={ artist }
-              onChange={ this.handleChange }
-              data-testid="search-artist-input"
-            />
-          </label>
-          <button
-            type="submit"
-            data-testid="search-artist-button"
-            disabled={ this.isLoginButtonDisabled() }
-          >
-            Pesquisar
+        {loading ? <Loading />
+          : (
+            <form>
+              <br />
+              <label htmlFor="search-artist">
+                <input
+                  id="search-artist"
+                  name="search-artist"
+                  type="text"
+                  value={ artist }
+                  onChange={ this.handleChange }
+                  data-testid="search-artist-input"
+                />
+              </label>
+              <button
+                type="button"
+                data-testid="search-artist-button"
+                disabled={ this.isLoginButtonDisabled() }
+                onClick={ this.onSearchButtonClick }
+              >
+                Pesquisar
 
-          </button>
-        </form>
+              </button>
+            </form>)}
+        { albumList }
       </div>
     );
   }
