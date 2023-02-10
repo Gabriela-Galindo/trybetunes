@@ -1,0 +1,48 @@
+header {
+  background: white;
+  height: 100%;
+  left: 0px;
+  position: absolute;
+  top: 0px;
+  width: 250px;
+}
+
+h1 {
+  color: #003be5;
+  font-family: fantasy;
+  font-size: 40px;
+  font-weight: 600;
+  margin: 30px;
+  padding: 20px;
+  text-align: center;
+}
+
+.search-link {
+  color: #003be5;
+  font-family: fantasy;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 20px;
+  padding: 20px;
+  text-align: center;
+}
+
+.favorite-link {
+  color: #003be5;
+  font-family: fantasy;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 20px;
+  padding: 20px;
+  text-align: center;
+}
+
+.profile-link {
+  color: #003be5;
+  font-family: fantasy;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 20px;
+  padding: 20px;
+  text-align: center;
+}

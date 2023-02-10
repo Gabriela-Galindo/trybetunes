@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Header from '../Components/Header';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
 import Loading from './Loading';
+import '../style/Search.css';
 
 class Search extends React.Component {
   constructor() {
@@ -87,6 +88,7 @@ class Search extends React.Component {
                 data-testid="search-artist-button"
                 disabled={ this.isLoginButtonDisabled() }
                 onClick={ this.onSearchButtonClick }
+                className="search-button"
               >
                 Pesquisar
 
