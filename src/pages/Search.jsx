@@ -34,7 +34,7 @@ class Search extends React.Component {
     this.setState({ loading: true });
     const result = await searchAlbumsAPI(artist);
     const element = (
-      <div>
+      <div className="search-result">
         <div>
           Resultado de álbuns de:
           {' '}
@@ -45,6 +45,11 @@ class Search extends React.Component {
             <ul>
               {result.map((card) => (
                 <li key={ card.collectionId }>
+                  <img
+                    className="album-image"
+                    src={ card.artworkUrl100 }
+                    alt={ card.collectionName }
+                  />
                   {' '}
                   { card.artistName }
                   {' '}

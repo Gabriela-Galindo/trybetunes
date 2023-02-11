@@ -1,4 +1,47 @@
 form {
-  display: inline;
-  align-self: center;
+  margin-left: 700px;
+}
+
+form input {
+  border: 1px solid #003BE5;
+  border-radius: 100px;
+  height: 40px;
+  left: 180px;
+  outline: none;
+  text-align: center;
+  top: 205px;
+  width: 400px;
+}
+
+form button {
+  background: #003be5;
+  border-radius: 100px;
+  color: white;
+  font-family: fantasy;
+  font-size: medium;
+  font-weight: bold;
+  height: 40px;
+  left: 185px;
+  width: 200px;
+}
+
+form button:disabled {
+  background: white;
+  border: 1px solid #003BE5;
+  color: #003be5;
+}
+
+.search-result {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 0 26px rgba(68, 73, 85, 0.2);
+  height: auto;
+  left: 500px;
+  position: relative;
+  top: 100px;
+  width: 1000px;
+}
+
+.album-image {
+  size: 100px;
 }
